@@ -1,0 +1,190 @@
+@font-face {
+    font-family: josef;
+    src: url(./fonts/JosefinSans-Regular.ttf);
+}
+
+:root{
+    ---white-color: #fff;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: josef;
+}
+body{
+    overflow-x: hidden;
+
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.top{
+    width: 100vw;
+    min-height: 35vh;
+    background-image: url(./images/light.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.todo{
+    position: absolute;
+    width: 30vw;
+    top: 10%;
+    left: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heading{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    height: 50px;
+}
+
+.heading h1{
+    color: var(---white-color);
+    font-size: 24px;
+    letter-spacing: 5px;
+}
+
+.add-task{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: var(---white-color);
+    height: 45px;
+    border-radius: 5px;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.add-task button{
+    background: var(---white-color);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.add-task input{
+    width: 100%;
+    height: 45px;
+    outline: none;
+    border: none;
+    text-align: left;
+}
+
+.list{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background: var(---white-color);
+    margin-bottom: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.list ul{
+    list-style: none;
+    text-decoration: none;
+}
+
+
+
+ul li{
+    list-style: none;
+    user-select: none;
+    font-size: 17px;
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 50px;
+    border-bottom:0.5px solid rgba(227, 228, 241, 1);
+}
+
+ul li::before{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-image: url(/icons/Oval\ Copy.png);
+    background-size: cover;
+    background-position: center;
+    top: 12px;
+    left: 8px;
+    transition: 0.5;
+    border-color: none;
+}
+
+ul li.checked{
+    text-decoration: line-through;
+    color: #555;
+}
+
+ul li.checked::before{
+    background-image: url(/icons/tick\ in\ circle.png);
+}
+
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: #555;
+    border-radius: 50%;
+    text-align: center;
+}
+
+ul li span:hover{
+    background: #edeef0;
+}
+
+
+.list-menus{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    margin-top: 60px;
+    font-size: smaller;
+    color: gray;
+}
+
+.list-options{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-options >p:hover{
+    color: black;
+    cursor: pointer;
+}
+
+.clear-option >p:hover{
+    color: black;
+    cursor: pointer;
+}
+
+.drag-and-drop-text{
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+}
