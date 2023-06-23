@@ -1,11 +1,30 @@
 @font-face {
     font-family: josef;
-    src: url(./fonts/JosefinSans-Regular.ttf);
+    src: url(./JosefinSans-Regular.ttf);
 }
 
 :root{
+    ---offwhite-color: rgba(250, 250, 250, 1);
     ---white-color: #fff;
+    ---darkgray-color: #ffffff;
+    ---black-color: #000000;
+    ---gray-color: #808080;
+    ---lightgray-color: #edeef0;
+    ---lightblue-color: rgba(227, 228, 241, 1);
+    ---dark-color:rgba(0, 0, 0, 0.1);
+    ---paleblack-color: rgba(73, 76, 107, 1);
+   
 }
+
+.dark-mode{
+    ---offwhite-color: rgba(23, 24, 35, 1);
+    ---white-color: rgba(57, 58, 75, 1);
+    ---black-color: #fff;
+    ---paleblack-color: rgba(200, 203, 231, 1);
+    ---darkgray-color: 
+
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -22,6 +41,7 @@ body{
     align-items: center;
     flex-direction: column;
     width: 100vw;
+    background-color: var(---offwhite-color);
     min-height: 100vh;
 }
 
@@ -32,6 +52,10 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+
+
 
 .todo{
     position: absolute;
@@ -50,13 +74,45 @@ body{
     justify-content: space-between;
     margin-bottom: 50px;
     height: 50px;
+    /* border: 2px solid red; */
 }
 
 .heading h1{
-    color: var(---white-color);
+    color: white;
     font-size: 24px;
     letter-spacing: 5px;
 }
+
+.toggler{
+    width: 70px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+}
+
+.toggler > img{
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.toggler .active-theme{
+    visibility: hidden;
+}
+.toggler .not-active-theme{
+    visibility: visible;
+}
+
+/* .toggler > img{
+    display: none;
+}
+
+.active-theme{
+    display: flex;
+} */
 
 .add-task{
     width: 100%;
@@ -72,18 +128,32 @@ body{
 
 .add-task button{
     background: var(---white-color);
-    border: none;
+    border: 1px solid red;
     outline: none;
     border-radius: 50%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 0.1px solid #ffffff;
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
+    border: 0.1px solid #ffffff;
 }
 
 .add-task input{
+    background: var(---white-color);
     width: 100%;
     height: 45px;
     outline: none;
     border: none;
     text-align: left;
+    color: var(---paleblack-color);
 }
 
 .list{
@@ -94,7 +164,7 @@ body{
     flex-direction: column;
     background: var(---white-color);
     margin-bottom: 30px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px var(---dark-color);
 }
 
 .list ul{
@@ -107,31 +177,33 @@ body{
 ul li{
     list-style: none;
     user-select: none;
+    color: var(---paleblack-color);
     font-size: 17px;
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 50px;
-    border-bottom:0.5px solid rgba(227, 228, 241, 1);
+    padding: 12px 8px 18px 50px;
+    border-bottom:0.5px solid var(---lightblue-color);
 }
 
 ul li::before{
     content: '';
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background-image: url(/icons/Oval\ Copy.png);
+    background-image: url(/icons/dark\ Oval.png);
     background-size: cover;
     background-position: center;
     top: 12px;
     left: 8px;
     transition: 0.5;
-    border-color: none;
+    border: 0.2px solid #ffffff;
+    /* border: 0.5px solid rgb(240, 240, 243); */
 }
 
 ul li.checked{
     text-decoration: line-through;
-    color: #555;
+    background: var(---darkgray-color);
 }
 
 ul li.checked::before{
@@ -146,13 +218,13 @@ ul li span{
     width: 20px;
     height: 20px;
     font-size: 20px;
-    color: #555;
+    background: var(---white-color);
     border-radius: 50%;
     text-align: center;
 }
 
 ul li span:hover{
-    background: #edeef0;
+    background: var(---lightgray-color);
 }
 
 
@@ -164,7 +236,7 @@ ul li span:hover{
     padding: 5px;
     margin-top: 60px;
     font-size: smaller;
-    color: gray;
+    color:var(---gray-color);
 }
 
 .list-options{
@@ -174,12 +246,12 @@ ul li span:hover{
 }
 
 .list-options >p:hover{
-    color: black;
+    color: var(---black-color);
     cursor: pointer;
 }
 
 .clear-option >p:hover{
-    color: black;
+    color: var(---black-color);
     cursor: pointer;
 }
 

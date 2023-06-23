@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
     <title>Do</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./index.css" >
 </head>
 <body>
     <div class="container">
-        <div class="top"></div>
+        <div class="top" id="top"></div>
         <div class="todo">
             <div class="heading">
                 <h1>TODO</h1>
-                <img src="./icons/moon.png" alt="">
+                <div class="toggler" id="toggler">
+                    <img class="not-active-theme" src="./icons/moon.png" alt="" id="moon">
+                    <img class="active-theme"src="./icons/sun.png" alt="" id="sun">
+                </div>
             </div>
             <div class="add-task" id="add-task">
-                <button><img  onclick= "addTask()" src="./icons/Oval Copy.png" alt="add"></button>
+                <button><img class="check-box" onclick= "addTask()" src="./icons/dark Oval.png" alt="add" id="check-box"></button>
                 <input type="text" name="" id="new-task" placeholder="Add a task, click button to add">
             </div>
             <div class="list">
