@@ -6,10 +6,20 @@ const lightIcon = document.getElementById("sun");
 const toggler = document.getElementById("toggler");
 const topImage = document.getElementById("top");
 const body = document.body;
-const checkBox = document.getElementById("check-box");
+// const checkBox = document.getElementById("check-box");
+const activeMenu = document.getElementById("current");
+const completedMenu = document.getElementById("done");
+ 
+// const activeMenu = document.getElementById("current");
 
 
 
+completedMenu.addEventListener("click", () =>{
+    if(li === 'checked')
+    completedMenu.setAttribute("class", "active");
+    console.log("active");
+    
+})
 
 
 toggler.addEventListener("click", () =>{
@@ -20,9 +30,13 @@ toggler.addEventListener("click", () =>{
     checkTopBackground();
 
     body.classList.toggle("dark-mode");
-    
 
-})
+  
+
+}
+
+
+)
 
 function checkTopBackground(){
     if(darkIcon.classList.contains("not-active-theme")){
@@ -44,6 +58,7 @@ function addTask(){
         let span = document.createElement("span");
         span.innerHTML = "\u00d7";
         li.appendChild(span);
+        li.setAttribute("class","active");
         // li.draggable ="true";
         // li.classList.add("item");
 
@@ -75,11 +90,11 @@ todoList.addEventListener("click", function(e){
     if(e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
         
-        if (target.checked) {
-            itemsLeftCount--;
-        } else {
-            itemsLeftCount++;
-        }
+        // if (target.checked) {
+        //     itemsLeftCount--;
+        // } else {
+        //     itemsLeftCount++;
+        // }
 
         UpdateItemsCount();
         saveData();

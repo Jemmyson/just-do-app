@@ -21,7 +21,7 @@
     ---white-color: rgba(57, 58, 75, 1);
     ---black-color: #fff;
     ---paleblack-color: rgba(200, 203, 231, 1);
-    ---darkgray-color: 
+    ---lightblue-color: rgba(227, 228, 241, 1);
 
 }
 
@@ -106,13 +106,6 @@ body{
     visibility: visible;
 }
 
-/* .toggler > img{
-    display: none;
-}
-
-.active-theme{
-    display: flex;
-} */
 
 .add-task{
     width: 100%;
@@ -212,8 +205,8 @@ ul li.checked::before{
 
 ul li span{
     position: absolute;
-    right: 0;
-    top: 5px;
+    right: 12px;
+    top: 12px;
     line-height: 20px;
     width: 20px;
     height: 20px;
@@ -259,4 +252,9 @@ ul li span:hover{
     margin-top: 40px;
     width: 100%;
     text-align: center;
+    color:var(---gray-color);
+}
+
+.active-list{
+    color: rgba(58, 124, 253, 1);
 }
