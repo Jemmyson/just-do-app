@@ -1,3 +1,4 @@
+//Getting elements from the dom and setting variables for them
 const newTask = document.getElementById("new-task");
 const todoList = document.getElementById("to-do-list");
 const itemsLeft = document.getElementById("number-left");
@@ -13,6 +14,7 @@ const clearCompletedButton = document.getElementById("clearCompletedButton");
 const itemsLeftText = document.getElementById("items-left-text");
  
 
+//toggles between light and dark mode by clicking in the toggle div with the moon and sun icons
 toggler.addEventListener("click", () =>{
 
     darkIcon.classList.toggle('not-active-theme');
@@ -23,6 +25,8 @@ toggler.addEventListener("click", () =>{
 
 )
 
+
+//changes top background image from light to dark and vice versa
 function checkTopBackground(){
     if(darkIcon.classList.contains("not-active-theme")){
         topImage.style.backgroundImage = "url('./images/light.png')";
@@ -32,6 +36,8 @@ function checkTopBackground(){
     console.log("function is reading")
 }
 
+
+//adds up new task entered in the input box, sets it to a class name and leaves the input box empty after the new task is added to the list
 function addTask(){
     if (newTask.value.trim() === ''){
         alert("Type something!");
@@ -44,8 +50,7 @@ function addTask(){
         span.innerHTML = "\u00d7";
         li.appendChild(span);
         li.setAttribute("class","activeTask");
-        // li.setAttribute(draggable, "true");
-        // li.classList.add("item");
+        
 
 
         UpdateItemsCount();
@@ -57,6 +62,7 @@ function addTask(){
 }
 
 
+//counts the number of active tasks in the list, 
 function UpdateItemsCount(){
     let itemsLeftCount = document.querySelectorAll('.activeTask').length;
     itemsLeft.innerHTML = itemsLeftCount;
@@ -65,6 +71,7 @@ function UpdateItemsCount(){
 }
 
 
+//toggles between completed and active task, deletes completed and unwanted tasks 
 todoList.addEventListener("click", function(e){
     if(e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
@@ -82,11 +89,12 @@ todoList.addEventListener("click", function(e){
 }, false);
 
 
-//save data 
+//saves list data 
 function saveData(){
     localStorage.setItem("data", todoList.innerHTML); 
 }
 
+//displays saved list 
 function showList(){
     todoList.innerHTML = localStorage.getItem("data");
 }
@@ -94,6 +102,8 @@ showList();
 UpdateItemsCount();
 
 
+
+//adds the color blue to the current list clicked on, displays the current list and counts the amount of items in each option
 function showAllTasks(){
     activeTasksButton.classList.remove('active-list');
     allTasksButton.classList.add('active-list');
@@ -137,6 +147,8 @@ function showCompletedTasks(){
 
 }
 
+
+//clears all completed task
 function clearCompleted(){
     const completedTasks = todoList.getElementsByClassName('completedTask');
     while(completedTasks.length > 0){
