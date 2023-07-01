@@ -6,35 +6,20 @@ const lightIcon = document.getElementById("sun");
 const toggler = document.getElementById("toggler");
 const topImage = document.getElementById("top");
 const body = document.body;
-// const checkBox = document.getElementById("check-box");
-const activeMenu = document.getElementById("current");
-const completedMenu = document.getElementById("done");
+const allTasksButton = document.getElementById("allTasks");
+const activeTasksButton = document.getElementById("activeTasks");
+const completedTasksButton = document.getElementById("completedTasks");
+const clearCompletedButton = document.getElementById("clearCompletedButton");
+const itemsLeftText = document.getElementById("items-left-text");
  
-// const activeMenu = document.getElementById("current");
-
-
-
-completedMenu.addEventListener("click", () =>{
-    if(li === 'checked')
-    completedMenu.setAttribute("class", "active");
-    console.log("active");
-    
-})
-
 
 toggler.addEventListener("click", () =>{
 
     darkIcon.classList.toggle('not-active-theme');
-    lightIcon.classList.toggle('not-active-theme');
-   
+    lightIcon.classList.toggle('not-active-theme');  
     checkTopBackground();
-
     body.classList.toggle("dark-mode");
-
-  
-
 }
-
 
 )
 
@@ -58,8 +43,8 @@ function addTask(){
         let span = document.createElement("span");
         span.innerHTML = "\u00d7";
         li.appendChild(span);
-        li.setAttribute("class","active");
-        // li.draggable ="true";
+        li.setAttribute("class","activeTask");
+        // li.setAttribute(draggable, "true");
         // li.classList.add("item");
 
 
@@ -71,32 +56,22 @@ function addTask(){
 
 }
 
-// function changeCheckbox(){
-//     if(checkBox.classList.contains("check-box")){
-
-//     }
-// }
 
 function UpdateItemsCount(){
-    let itemsLeftCount = todoList.children.length;
+    let itemsLeftCount = document.querySelectorAll('.activeTask').length;
     itemsLeft.innerHTML = itemsLeftCount;
+    itemsLeftText.innerHTML = itemsLeftCount + ' items left';
 
 }
-
-
 
 
 todoList.addEventListener("click", function(e){
     if(e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
+        e.target.classList.toggle("activeTask");
+        e.target.classList.toggle("completedTask");
         
-        // if (target.checked) {
-        //     itemsLeftCount--;
-        // } else {
-        //     itemsLeftCount++;
-        // }
-
-        UpdateItemsCount();
+       UpdateItemsCount();
         saveData();
     }
     else if(e.target.tagName === "SPAN"){
@@ -105,8 +80,6 @@ todoList.addEventListener("click", function(e){
         saveData();
     }
 }, false);
-
-
 
 
 //save data 
@@ -120,11 +93,63 @@ function showList(){
 showList();
 UpdateItemsCount();
 
-const listPicture = document.querySelector('ul li::before');
+
+function showAllTasks(){
+    activeTasksButton.classList.remove('active-list');
+    allTasksButton.classList.add('active-list');
+    completedTasksButton.classList.remove('active-list');
+
+    todoList.classList.remove('completedTasksList')
+    todoList.classList.remove('activeTasksList')
+
+    let itemsLeftCount = document.querySelectorAll('.activeTask').length;
+    itemsLeft.innerHTML = itemsLeftCount;
+    itemsLeftText.innerHTML = itemsLeftCount + ' items left';
+
+}
+
+function showActiveTasks(){
+    activeTasksButton.classList.add('active-list');
+    allTasksButton.classList.remove('active-list');
+    completedTasksButton.classList.remove('active-list');
+
+    todoList.classList.remove('completedTasksList')
+    todoList.classList.add('activeTasksList')
+
+    let itemsLeftCount = document.querySelectorAll('.activeTask').length;
+    itemsLeft.innerHTML = itemsLeftCount;
+    itemsLeftText.innerHTML = itemsLeftCount + ' items left';
+
+}
+
+function showCompletedTasks(){
+    activeTasksButton.classList.remove('active-list');
+    allTasksButton.classList.remove('active-list');
+    completedTasksButton.classList.add('active-list');
+    
+    todoList.classList.add('completedTasksList')
+    todoList.classList.remove('activeTasksList')
+
+    let itemsCompletedCount = document.querySelectorAll('.completedTask').length;
+    itemsLeft.innerHTML = itemsCompletedCount;
+    itemsLeftText.innerHTML = itemsCompletedCount + ' completed';
+    
+
+}
+
+function clearCompleted(){
+    const completedTasks = todoList.getElementsByClassName('completedTask');
+    while(completedTasks.length > 0){
+        completedTasks[0].remove();
+    }
+
+    
+    UpdateItemsCount();
+}
 
 
+// drag and drop
 
-var color = window.getComputedStyle( document.querySelector('ul li'), ':before').getPropertyValue('background-image');
-
-
-console.log(color)
+new Sortable (todoList, {
+    animation: 300
+});
